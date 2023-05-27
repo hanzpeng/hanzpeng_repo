@@ -4,6 +4,7 @@ using FullStack.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FullStack.API.Migrations
 {
     [DbContext(typeof(FullStackDbContext))]
-    partial class FullStackDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230527224923_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,7 +59,7 @@ namespace FullStack.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("CityId")
+                    b.Property<Guid>("CityId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Department")
@@ -100,7 +103,9 @@ namespace FullStack.API.Migrations
                 {
                     b.HasOne("FullStack.API.Models.City", null)
                         .WithMany("Employees")
-                        .HasForeignKey("CityId");
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("FullStack.API.Models.EmployeeCourse", b =>

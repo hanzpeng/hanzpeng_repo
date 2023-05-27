@@ -7,7 +7,8 @@
         public string Email { get; set; }
         public long Phone { get; set; }
         public long Salary { get; set; }
-
         public string Department{ get; set; }
+        public Guid? CityId { get; set; }
+        public ICollection<EmployeeCourse> EmployeeCourses { get; set;}
     }
 }
