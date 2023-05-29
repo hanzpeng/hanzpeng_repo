@@ -28,6 +28,13 @@ namespace FullStack.API
                 c.DefaultRequestHeaders.Add("User-Agent", "HttpClientFactory-Sample");
             });
 
+            builder.Services.AddAntiforgery(options =>
+            {
+                options.FormFieldName = "MyAntiForgeryField";
+                options.HeaderName = "MyAntiForgeryHeader";
+                options.Cookie.Name = "MyAntiForgeryCookie";
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
