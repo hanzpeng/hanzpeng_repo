@@ -17,6 +17,17 @@ namespace FullStack.API
             builder.Services.AddSwaggerGen();
             builder.Services.AddDbContext<FullStackDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("FullStackConnectionString")));
+            // this will register http Client
+            builder.Services.AddHttpClient();
+
+            // name http client
+            builder.Services.AddHttpClient("github", c =>
+            {
+                c.BaseAddress = new Uri("https://api.github.com");
+                c.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3+json");
+                c.DefaultRequestHeaders.Add("User-Agent", "HttpClientFactory-Sample");
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

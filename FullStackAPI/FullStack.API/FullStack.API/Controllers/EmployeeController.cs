@@ -10,13 +10,22 @@ namespace FullStack.API.Controllers
     public class EmployeeController : Controller
     {
         private readonly FullStackDbContext _fullStackDbContext;
-        public EmployeeController(FullStackDbContext fullStackDbContext) { 
+        private readonly IHttpClientFactory _httpClientFactory;
+        public EmployeeController(
+            FullStackDbContext fullStackDbContext,
+            IHttpClientFactory httpClientFactory
+            )
+        {
+            _httpClientFactory = httpClientFactory;
             _fullStackDbContext = fullStackDbContext;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllEmployees()
+        [ProducesResponseType(typeof(List<Employee>), 200)]
+        //public async Task<IActionResult> GetAllEmployees()
+        public async Task<ActionResult<List<Employee>>> GetAllEmployees()
         {
+            var gitHubHttpClient = _httpClientFactory.CreateClient("github"); 
             var employee = await _fullStackDbContext.Employees.ToListAsync();
             return Ok(employee);
         }
