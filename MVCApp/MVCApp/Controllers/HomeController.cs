@@ -23,6 +23,11 @@ namespace MVCApp.Controllers
             return View();
         }
 
+        public IActionResult Hello()
+        {
+            return Ok("Hello");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
