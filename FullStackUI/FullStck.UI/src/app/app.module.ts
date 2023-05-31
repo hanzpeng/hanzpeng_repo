@@ -8,12 +8,14 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AddEmployeeComponent } from './components/employees/add-employee/add-employee.component';
 import { FormsModule } from '@angular/forms';
 import { TokenInterceptor } from './token.interceptor';
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeesListComponent,
-    AddEmployeeComponent
+    AddEmployeeComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
