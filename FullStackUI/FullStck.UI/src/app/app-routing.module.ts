@@ -21,6 +21,11 @@ const routes: Routes = [
     path: 'product',
     component: ProductComponent
   },
+
+  {path: 'employee', redirectTo: 'employees', pathMatch: 'full' },
+
+  {path: '**', redirectTo: 'employees', pathMatch: 'full' },
+
 ];
 
 @NgModule({
