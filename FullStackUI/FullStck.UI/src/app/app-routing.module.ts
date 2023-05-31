@@ -21,6 +21,10 @@ const routes: Routes = [
     path: 'product',
     component: ProductComponent
   },
+  {
+    path: 'product/:id',
+    component: ProductComponent
+  },
 
   {path: 'employee', redirectTo: 'employees', pathMatch: 'full' },
 
