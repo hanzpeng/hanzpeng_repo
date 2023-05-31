@@ -9,8 +9,14 @@ import { Observable } from 'rxjs';
 })
 export class EmployeesService {
   baseApiUrl: string = environment.baseApiUrl;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+  }
   
+  getGithub() : Observable<any>{
+    const path = 'https://api.github.com/search/repositories?q=hanzpeng';
+    return this.http.get(path);
+  }
+
   getAllEmployees() : Observable<Employee[]>{
     return this.http.get<Employee[]>(this.baseApiUrl+ 'api/employee');
   }
