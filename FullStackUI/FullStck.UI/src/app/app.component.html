@@ -22,7 +22,7 @@
 </nav>
 
 <ng-container *ngFor="let id of ids">
-  <div><a routerLink="product/{{id}}">product {{id}}</a></div>
+  <div><a [routerLink]="['product', id]">product {{id}}</a></div>
 </ng-container>
 
 <router-outlet></router-outlet>
